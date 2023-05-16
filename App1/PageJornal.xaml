@@ -1,0 +1,103 @@
+﻿<Page
+    x:Class="App1.PageJornal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      
+      xmlns:data="using:storeBook"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="0,0,900,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="name:" VerticalAlignment="Center" Margin="10" />
+            <TextBox Grid.Column="1" Name="nameBox" Margin="10" />
+
+            <TextBlock Grid.Row="1" Text="price:" VerticalAlignment="Center" Margin="10" />
+            <TextBox Grid.Row="1" Grid.Column="1" Name="priceBox" Margin="10" />
+
+            <TextBlock Grid.Row="2" Text="ISBN" VerticalAlignment="Center" Margin="10" />
+            <TextBox Grid.Row="2" Grid.Column="1" Name="ISBNBox" Margin="10" />
+            <Button Grid.Row="3" Grid.Column="1" Margin="120,0,0,0" Content="remove" Click="RemoveButton_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" Name="NewContactButton" Click="NewContactButton_Click" Content="Add" Margin="10" />
+            <Button Grid.Row="3" Grid.Column="1" Name="buyButton" Click="Buy_Button" Content="buy" Margin="218,0,0,0"/>
+
+            <ComboBox Grid.Row="3" SelectionChanged="GenerComboBox_SelectionChanged" Name="GenerComboBox" >
+                <ComboBoxItem Content="unnon"/>
+                <ComboBoxItem Content ="business"/>
+                <ComboBoxItem Content="kids"/>
+                <ComboBoxItem Content="woman"/>
+                <ComboBoxItem Content="man"/>
+            </ComboBox>
+        </Grid>
+
+
+
+        <ListView x:Name="lijournal"  Margin="0,1,371,1" Grid.Row="2" ItemsSource="{x:Bind _journals}" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate  x:DataType="data:Journal">
+                    <StackPanel>
+                        <TextBlock   Text=" name of journal :  " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Text="{Binding name}"  Margin="0,0,5,0" />
+
+                        <TextBlock   Text=" price:  " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Text="{Binding price}" />
+
+                        <TextBlock   Text=" ISBN:  " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Text="{Binding ISBN}" />
+
+                        <TextBlock   Text=" Gener " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                        <TextBlock Text="{Binding _generJournal}" />
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+        <!--<GridView x:Name="JournalsGridView" Grid.Row="2" Margin="20" Background="Aqua">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:Journal">
+                    <StackPanel HorizontalAlignment="Center" Margin="10">
+
+                        <StackPanel Orientation="Vertical" 
+                                    Margin="0,10,0,0" 
+                                    HorizontalAlignment="Center">
+                            <TextBlock   Text=" name jorenal:  " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                            <TextBlock Text="{x:Bind name}" />
+
+                            <TextBlock   Text=" price:  " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                            <TextBlock Text="{x:Bind price}" Margin="0,0,5,0" />
+
+                            <TextBlock   Text=" ISNB:  " Style="{ThemeResource CaptionTextBlockStyle}"/>
+                            <TextBlock Text="{x:Bind ISBN}" Margin="0,0,5,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+        </GridView>-->
+
+        <Button Width="100" Margin="644,45,0,0" VerticalAlignment="Top" Height="53" Click="GoToBooks">go to books</Button>
+
+    </Grid>
+</Page>
